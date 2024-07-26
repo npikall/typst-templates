@@ -1,4 +1,4 @@
-#import "templates/ovlf-std.typ": conf
+#import "templates/thesis-bui.typ": conf
 
 #let title = [Testing Typst Templates]
 #let author = [John Doe]
@@ -8,17 +8,22 @@
 #let email = [john.doe\@email.com]
 #let matrnr = [123456789]
 
+#let abstract = [#lorem(60)]
+
 #show: doc => conf(
-  //thesis-type: thesis-type,
+  thesis-type: thesis-type,
   title: title,
   author: author,
   date: date,
-  //email: email,
-  //matrnr: matrnr,
+  email: email,
+  matrnr: matrnr,
+  abstract: abstract,
   doc,
   )
 
-#outline(title: [Table of Contents])
+#outline(title: [Table of Contents], indent: auto)
+
+//#show: rest => columns(2, rest)
 
 = Introduction
 This file is used to test the Typst templates. Just import the templates in the top of this document and and see what effects they have on the document. 

@@ -6,6 +6,7 @@
   date:none,
   email:none,
   matrnr:none,
+  abstract:none,
   doc
 ) = {
   // set the Pagelayout
@@ -13,9 +14,15 @@
     paper:"a4",
     margin: ( left: 2.5cm,
               right: 2.5cm, 
-              top: 1.5cm, 
+              top: 2.5cm, 
               bottom: 2.5cm ),
-    numbering: "1"
+    numbering: "1",
+    header: context{
+      if counter(page).get().first() > 1 [
+      #set text(10pt)
+      #h(1fr) #emph(title)
+      #line(length: 100%, stroke: 0.7pt)]} ,
+    header-ascent: 30%,
   )
   // Set the Heading Numbering
   set heading(numbering: "1.")
@@ -26,8 +33,11 @@
           first-line-indent: 1.8em,
           justify: true)
   // Set the font style
+  let mainfont = "CMU Serif"//"New Computer Modern"
+  let titlefont = "CMU Sans Serif" //"Dejavu Sans"
+
   set text(
-    font: "New Computer Modern",
+    font: mainfont,
     size: 11pt
   )
   // Set Table style
@@ -47,14 +57,15 @@
     level: 1,
   ): it => {
     v(11pt, weak: true)
-    strong(it.body)
-    box(width: 1fr, repeat[])
-    strong(it.page)}
+    text(font:titlefont, size:11pt ,[
+      #strong(it.body)
+      #box(width: 1fr, repeat[])
+      #strong(it.page)
+      ])}
 
   show outline.entry.where(
     level: 2,
   ): it => {
-    h(1.2em)
     it.body
     box(width: 1fr, repeat[.])
     it.page}
@@ -62,27 +73,35 @@
   show outline.entry.where(
     level: 3,
   ): it => {
-    h(2.4em)
     it.body
     box(width: 1fr, repeat[.])
-    it.page}
+    it.page
+    }
 
   // Printing the title
-  let thefont = "Dejavu Sans" 
-
   align(center,[
     #v(3em)
-    #text(18pt, font: thefont)[#thesis-type]
+    #text(18pt, font: titlefont)[#thesis-type]
     #v(.5em)
-    #text(18pt, font: thefont)[*#title*]
+    #text(18pt, font: titlefont)[*#title*]
     #v(1.2em)
-    #text(11pt, font: thefont)[#author]
+    #text(10pt, font: titlefont)[#author]
     #v(0.5em)
-    #text(11pt, font: thefont)[
+    #text(10pt, font: titlefont)[
       #email\
       Matr.Nr. #matrnr\
       Datum: #date]
     #v(1em)
   ])
+  align(center)[
+    #box(width: 90%, [
+    #text(11pt, font: titlefont)[*Abstract*]\
+    #text(11pt, font: mainfont)[#abstract]
+    #v(1em)])
+  ]
+  show heading: it => [
+  #set text(font: titlefont)
+  #block(it)
+  ]
   doc
 }

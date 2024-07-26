@@ -23,7 +23,7 @@
   // Set the font style
   set text(
     font: "New Computer Modern",
-    size: 11pt
+    size: 10pt
   )
   show raw: set text(font: "DejaVu Sans Mono")
   show par: set block(above: 1.4em, below: 1em)
@@ -47,7 +47,6 @@
   show outline.entry.where(
     level: 2,
   ): it => {
-    h(1.2em)
     it.body
     box(width: 1fr, repeat[.])
     it.page}
@@ -55,7 +54,6 @@
     show outline.entry.where(
     level: 3,
   ): it => {
-    h(2.4em)
     it.body
     box(width: 1fr, repeat[.])
     it.page}
@@ -63,12 +61,12 @@
 
   // Printing the title
   align(center,[
-    #v(3em)
-    #text(18pt)[#title]
-    #v(1.5em)
-    #text(13pt)[#author]
-    #v(0.5em)
-    #text(13pt)[#date]
+    #v(5em)
+    #text(16pt)[#title]
+    #v(1em)
+    #text(12pt)[#author]
+    #v(0em)
+    #text(12pt)[#date]
     #v(1em)
   ])
   doc

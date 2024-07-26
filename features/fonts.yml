@@ -1,0 +1,24 @@
+thesis-bui:
+  fonts:
+    cmu:
+      name: Computer Modern Unicode font family
+      href: https://ctan.org/pkg/cm-unicode
+      fontgroups:
+        - CMU Serif
+        - CMU Sans Serif
+    dejavu:
+      name: DejaVu font family
+      href: https://ctan.org/pkg/dejavu
+      fontgroups:
+        - DejaVu Sans Mono
+
+ovlf-std:
+  fonts:
+    ncm:
+      name: New Computer Modern
+      href: preloaded with typst
+    dejavu:
+      name: DejaVu font family
+      href: https://ctan.org/pkg/dejavu
+      fontgroups:
+        - DejaVu Sans Mono
