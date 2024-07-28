@@ -1,6 +1,7 @@
-// Overleaf LATEX Standard Template
+// Latex Style Template with simple cover page
 #let conf(
-  language:"en",  
+  language:"en",
+  title: none,
   doc
 ) = {
   // set the Pagelayout
@@ -8,9 +9,22 @@
     paper:"a4",
     margin: ( left: 2.5cm,
               right: 2.5cm, 
-              top: 1.5cm, 
+              top: 2.5cm, 
               bottom: 2.5cm ),
-    numbering: "1"
+    footer: context{
+      if counter(page).get().first() > 1 [
+        #h(1fr)
+        #counter(page).display(
+          "1",
+          both: false,
+        )
+        #h(1fr)]},
+    header: context{
+      if counter(page).get().first() > 1 and title != none [
+        #set text(10pt)
+        #h(1fr) #emph(title)
+        #line(length: 100%, stroke: 0.7pt)]} ,
+    header-ascent: 30%,
   )
   // Set the Heading Numbering
   set heading(numbering: "1.")
@@ -19,11 +33,11 @@
           first-line-indent: 1.8em,
           justify: true)
   // Set the font style
-  let mainfont = "New Computer Modern"
+  let mainfont = "CMU Serif"
   let rawfont = "Dejavu Sans Mono"
   set text(
     font: mainfont,
-    size: 10pt
+    size: 10pt, 
   )
   show raw: set text(font: rawfont)
   show par: set block(above: 1.4em, below: 1em)
@@ -73,16 +87,43 @@
 
 #let maketitle(
   title:[],
+  subtitle:[The important subtitle],
   author:[],
-  date:[],
+  date: datetime.today().display("[day].[month].[year]"),  
+  bottom:[Engineering\
+    Fantasy University],
+  logo:none,
 ) = {
-  align(center,[
-    #v(5em)
-    #text(16pt)[#title]
+  // titlepage with the logo
+  if logo != none [
+  #image(logo, width: 40%)
+  #align(center,[
+    #v(2.5cm)
+    #text(20pt)[#title]
     #v(1em)
-    #text(12pt)[#author]
-    #v(0em)
-    #text(12pt)[#date]
-    #v(1em)
+    #text(16pt)[#subtitle]
+    #v(3em)
+    #text(14pt)[#author]
+    #v(1fr)
+    #text(14pt)[
+      #bottom\
+      \
+      #date]
   ])
+  #pagebreak()] else [
+    // titlepage without the logo
+    #align(center,[
+    #v(5cm)
+    #text(20pt)[#title]
+    #v(1em)
+    #text(16pt)[#subtitle]
+    #v(3em)
+    #text(14pt)[#author]
+    #v(1fr)
+    #text(14pt)[
+      #bottom\
+      \
+      #date]])
+    #pagebreak()
+  ]
 }

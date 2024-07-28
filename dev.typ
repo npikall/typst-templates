@@ -1,28 +1,44 @@
-#import "templates/thesis-bui.typ": conf
+// Preamble
 
+// Import template
+#import "templates/skript.typ": conf, maketitle
+
+//Set variables
 #let title = [Testing Typst Templates]
-#let author = [John Doe]
+#let author = [John Glenfiddich]
 #let date = datetime.today().display("[day].[month].[year]")
 
 #let thesis-type = [Bachelorthesis]
-#let email = [john.doe\@email.com]
+#let email = [john.glenfiddich\@email.com]
 #let matrnr = [123456789]
-
 #let abstract = [#lorem(60)]
 
-#show: doc => conf(
-  thesis-type: thesis-type,
+// Set document metadata for the actual pdf
+#set document(title: title, author: "J.G.")
+
+// Useing the configuration
+#show: doc => conf(doc, language: "en")//, title:title)
+
+//%%%%%%%%%%%%%%
+// Main Document
+//%%%%%%%%%%%%%%
+
+// Make the title
+#maketitle(
   title: title,
   author: author,
-  date: date,
-  email: email,
-  matrnr: matrnr,
-  abstract: abstract,
-  doc,
+  // date: date,
+  // language: "en",
+  // thesis-type: thesis-type,
+  // email: email,
+  // matrnr: matrnr,
+  // logo: "../features/Logo.png",
   )
 
+// Table of Contents
 #outline(title: [Table of Contents], indent: auto)
 
+// Set document from here on to have 2 columns
 //#show: rest => columns(2, rest)
 
 = Introduction
@@ -68,6 +84,30 @@ $
 )<fig:winston>
 
 Siehe @fig:winston #lorem(50)
+
+== Lists
+#lorem(40) Here is a very important list:
+- Milk 
+- Spices
+  - Salt
+  - Pepper
+    - Black
+    - White
+
+#lorem(50)
+
++ Tick
++ Trick
++ Track
+
+#lorem(40)
+
+== Functions
+#lorem(50)
+#for value in range(2,12, step:2) [
+  - Band #value
+]
+
 
 == Code
 #lorem(30)

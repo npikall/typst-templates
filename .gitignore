@@ -1,2 +1,4 @@
 *.pdf
 test.typ
+features/Logo.png
+.DS_Store

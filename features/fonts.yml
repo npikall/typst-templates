@@ -22,3 +22,16 @@ ovlf-std:
       href: https://ctan.org/pkg/dejavu
       fontgroups:
         - DejaVu Sans Mono
+
+skript:
+  fonts:
+    cmu:
+      name: Computer Modern Unicode font family
+      href: https://ctan.org/pkg/cm-unicode
+      fontgroups:
+        - CMU Serif
+    dejavu:
+      name: DejaVu font family
+      href: https://ctan.org/pkg/dejavu
+      fontgroups:
+        - DejaVu Sans Mono
