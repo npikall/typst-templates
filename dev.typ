@@ -1,7 +1,7 @@
 // Preamble
 
 // Import template
-#import "templates/skript.typ": conf, maketitle
+#import "templates/thesis-bui.typ": conf, maketitle
 
 //Set variables
 #let title = [Testing Typst Templates]
@@ -27,16 +27,16 @@
 #maketitle(
   title: title,
   author: author,
-  // date: date,
-  // language: "en",
-  // thesis-type: thesis-type,
-  // email: email,
-  // matrnr: matrnr,
+  date: date,
+  language: "en",
+  thesis-type: thesis-type,
+  email: email,
+  matrnr: matrnr,
   // logo: "../features/Logo.png",
   )
 
 // Table of Contents
-#outline(title: [Table of Contents], indent: auto)
+//#outline(title: [Table of Contents], indent: auto)
 
 // Set document from here on to have 2 columns
 //#show: rest => columns(2, rest)
@@ -151,6 +151,6 @@ plt.show()
 = Discussion
 #lorem(120)
 
-//#outline(target: figure, title: [List of Figures])
+#outline(target: figure, title: [List of Figures])
 
-#bibliography("features/bibliography.bib", title: [References])
+#bibliography("features/ref.bib", title: [References])
