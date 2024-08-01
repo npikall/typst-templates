@@ -8,7 +8,7 @@
 
 // Set Fonts
 #let main-font = "New Computer Modern"
-#let title-font = "CMU Sans Serif"
+#let title-font = "PT Sans"//"CMU Sans Serif"
 #let raw-font = "DejaVu Sans Mono"
 
 // Workaround for the lack of `std` scope
@@ -275,6 +275,8 @@
         return numbering("A.1.", ..nums)
       }
     })
+  show heading.where(level: 3): set heading(numbering: "A.1", outlined: false)
+  show heading.where(level: 2): set heading(numbering: "A.1", outlined: false)
   counter(heading).update(0)
   appendix
   }
